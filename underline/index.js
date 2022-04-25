@@ -101,18 +101,16 @@ _.each = function (collection, iteratee, context)
     iteratee = iteratee.bind(context);
   }
 
-  if (Array.isArray(collection)) {
-    for (let i = 0; i < array.length; i++) 
-    {
+  for (let i = 0; i < collection.length; i++) {
+    if (Array.isArray(collection)) {
       iteratee(collection[array[i]], i, collection);
-    }
-  } else {
-
-    for (let i = 0; i < array.length; i++) 
-    {  
+    } else {
       iteratee(collection[array[i]], array[i], collection);
     }
   }
+
+   
+  
   return collection;
 };
 
@@ -197,7 +195,21 @@ _.invoke = function (collection, methodName) {};
 // given an array of objects (collection), iterates over each element
 // in the collection, and returns an array with all the values
 // corresponding to the property indicated by propertyName.
-_.pluck = function (collection, propertyName) {};
+_.pluck = function (collection, propertyName) {
+
+  let array = [];
+  function getPropName ( element, property ) 
+  {
+    return element[property];
+  }
+
+  for (let i = 0; i < collection.length; i++) {
+    array.push(getPropName(collection[i],propertyName));
+  }  
+
+  return array;
+
+};
 
 // FUNCTIONS
 
