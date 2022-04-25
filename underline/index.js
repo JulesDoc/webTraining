@@ -131,15 +131,19 @@ _.contains = function (collection, value) {
 // Returns a new array of values by mapping each value in collection through iteratee.
 // Each invocation of iteratee is called with three arguments:
 // (element, index|key, collection), and bound to the context if one is passed.
-_.map = function (collection, iteratee, context) {
-
-  let newArray = colletion.forEach(element => iteratee(element));
-
+_.map = function (collection, iteratee, context) 
+{
   if (context) 
   {
     iteratee = iteratee.bind(context);
   }
-
+  let index = 0;
+  let newArray;
+  while (index < collection.length())
+  {
+    newArray[index] = colletion.forEach(element => iteratee(element, index, collection));
+    index = index++;
+  }
   return newArray;
 };
 // _.reduce(collection, iteratee, [accumulator], [context])
